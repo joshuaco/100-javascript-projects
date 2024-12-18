@@ -13,13 +13,13 @@ console.log(map);
 
 const gameLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  //main();
+  main();
 
   requestAnimationFrame(gameLoop);
 };
 
 const main = () => {
-  console.log('FPS');
+  map.draw();
 };
 
 gameLoop();

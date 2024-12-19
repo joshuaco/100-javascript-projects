@@ -47,6 +47,14 @@ class Player {
     return false;
   }
 
+  #directonLine(directionX, directionY) {
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.x, this.y);
+    this.ctx.lineTo(directionX, directionY);
+    this.ctx.strokeStyle = 'red';
+    this.ctx.stroke();
+  }
+
   update() {
     this.rotationAngle += this.rotate * this.rotationSpeed;
 
@@ -69,12 +77,7 @@ class Player {
     const directionX = this.x + Math.cos(this.rotationAngle) * 40;
     const directionY = this.y + Math.sin(this.rotationAngle) * 40;
 
-    // Line X direction player
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.x, this.y);
-    this.ctx.lineTo(directionX, directionY);
-    this.ctx.strokeStyle = 'red';
-    this.ctx.stroke();
+    this.#directonLine(directionX, directionY);
   }
 }
 

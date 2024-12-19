@@ -4,14 +4,24 @@ class Level {
     this.ctx = ctx;
     this.level = array;
 
+    // map dimensions
     this.heightMap = this.level.length;
     this.widthMap = this.level[0].length;
 
+    // canvas dimensions
     this.heightCanvas = this.canvas.height;
     this.widthCanvas = this.canvas.width;
 
+    // tile dimensions
     this.heightTiles = parseInt(this.heightCanvas / this.heightMap);
     this.widthTiles = parseInt(this.widthCanvas / this.widthMap);
+  }
+
+  colission(x, y) {
+    if (this.level[y][x] !== 0) {
+      return true;
+    }
+    return false;
   }
 
   draw() {

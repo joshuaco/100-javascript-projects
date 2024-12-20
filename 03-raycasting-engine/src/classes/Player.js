@@ -1,3 +1,5 @@
+import { normalize } from '../utils/math.js';
+
 class Player {
   constructor(ctx, level, x, y) {
     this.ctx = ctx;
@@ -68,6 +70,8 @@ class Player {
     if (!this.colission(this.x, this.y + dy)) {
       this.y += dy;
     }
+
+    this.rotationAngle = normalize(this.rotationAngle);
   }
 
   draw() {

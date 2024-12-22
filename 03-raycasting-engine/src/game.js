@@ -1,5 +1,6 @@
 import Level from './classes/Level.js';
 import Player from './classes/Player.js';
+import logs from './engine/logs.js';
 import inputHandler from './engine/input.js';
 import { LEVEL1 } from './constants/levels.js';
 import { canvas, ctx } from './engine/renderer.js';
@@ -12,6 +13,7 @@ const gameLoop = () => {
   map.draw();
   player.draw();
   player.update();
+  logs(ctx, player);
 
   requestAnimationFrame(gameLoop);
 };

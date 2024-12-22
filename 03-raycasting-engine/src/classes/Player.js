@@ -1,4 +1,5 @@
 import { normalize } from '../utils/math.js';
+import Raycast from './Raycast.js';
 
 class Player {
   constructor(ctx, level, x, y) {
@@ -13,6 +14,8 @@ class Player {
     this.rotationAngle = 0;
     this.rotationSpeed = (Math.PI / 180) * 3; // degrees per frame
     this.speed = 3; // pixels per frame
+
+    this.raycast = new Raycast(ctx, level);
   }
 
   moveRight() {
@@ -49,7 +52,10 @@ class Player {
     return false;
   }
 
-  #directonLine(directionX, directionY) {
+  #directonLine() {
+    const directionX = this.x + Math.cos(this.rotationAngle) * 40;
+    const directionY = this.y + Math.sin(this.rotationAngle) * 40;
+
     this.ctx.beginPath();
     this.ctx.moveTo(this.x, this.y);
     this.ctx.lineTo(directionX, directionY);
@@ -74,14 +80,18 @@ class Player {
     this.rotationAngle = normalize(this.rotationAngle);
   }
 
+  #drawRays() {
+    for (let i = -this.raycast.rays; i < this.raycast.rays; i += 5) {
+      const rayAngle = this.rotationAngle + (Math.PI / 180) * i;
+      this.raycast.drawRay(this.x, this.y, rayAngle);
+    }
+  }
+
   draw() {
     this.ctx.fillStyle = 'red';
     this.ctx.fillRect(this.x - 3, this.y - 3, 6, 6);
 
-    const directionX = this.x + Math.cos(this.rotationAngle) * 40;
-    const directionY = this.y + Math.sin(this.rotationAngle) * 40;
-
-    this.#directonLine(directionX, directionY);
+    this.#drawRays();
   }
 }
 

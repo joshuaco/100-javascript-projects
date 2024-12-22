@@ -15,7 +15,7 @@ const gameLoop = () => {
   player.update();
   logs(ctx, player);
 
-  requestAnimationFrame(gameLoop);
+  window.requestAnimationFrame(gameLoop);
 };
 
 const main = () => {

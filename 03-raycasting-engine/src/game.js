@@ -13,7 +13,7 @@ const gameLoop = () => {
   map.draw();
   player.draw();
   player.update();
-  logs('A', player.rotationAngle);
+  logs('A', player.rotationAngle, 10, 30);
 
   window.requestAnimationFrame(gameLoop);
 };

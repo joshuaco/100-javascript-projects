@@ -7,3 +7,7 @@ export function normalize(angle) {
 
   return angle;
 }
+
+export function convertToRadians(angle) {
+  return angle * (Math.PI / 180);
+}

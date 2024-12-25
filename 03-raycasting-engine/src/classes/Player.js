@@ -1,4 +1,4 @@
-import { normalize } from '../utils/math.js';
+import { convertToRadians, normalize } from '../utils/math.js';
 import Raycast from './Raycast.js';
 
 class Player {
@@ -82,7 +82,7 @@ class Player {
 
   #drawRays() {
     for (let i = -this.raycast.rays; i < this.raycast.rays; i += 5) {
-      const rayAngle = this.rotationAngle + (Math.PI / 180) * i;
+      const rayAngle = convertToRadians(i) + this.rotationAngle;
       this.raycast.drawRay(this.x, this.y, rayAngle);
     }
   }

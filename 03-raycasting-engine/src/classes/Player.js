@@ -88,7 +88,7 @@ class Player {
   }
 
   #drawWallRays() {
-    const numRays = this.raycast.rays * 10;
+    const numRays = this.map.widthCanvas / 10;
     const fov = Math.PI / 3;
     const halfFov = fov / 2;
     const angleStep = fov / numRays;

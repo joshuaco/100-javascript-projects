@@ -1,4 +1,4 @@
-import { convertToRadians, normalize } from '../utils/math.js';
+import { convertToRadians, correctFishEye, normalize } from '../utils/math.js';
 import Raycast from './Raycast.js';
 
 class Player {
@@ -87,11 +87,44 @@ class Player {
     }
   }
 
-  draw() {
+  #drawWallRays() {
+    const numRays = this.raycast.rays * 10;
+    const fov = Math.PI / 3;
+    const halfFov = fov / 2;
+    const angleStep = fov / numRays;
+
+    for (let i = 0; i < numRays; i++) {
+      const rayAngle = this.rotationAngle - halfFov + i * angleStep;
+      const { distance } = this.raycast.castRay(this.x, this.y, rayAngle);
+      const correctedDistance = correctFishEye(
+        distance,
+        rayAngle,
+        this.rotationAngle
+      );
+
+      const wallHeight = (this.map.heightCanvas / correctedDistance) * 50;
+
+      // Calculate the x position of the wall
+      const x = (i / numRays) * this.map.widthCanvas;
+
+      // Draw the wall
+      this.ctx.fillStyle = 'gray';
+      this.ctx.fillRect(
+        x,
+        (this.map.heightCanvas - wallHeight) / 2,
+        this.map.widthCanvas / numRays,
+        wallHeight
+      );
+    }
+  }
+
+  #drawPlayer() {
     this.ctx.fillStyle = 'red';
     this.ctx.fillRect(this.x - 3, this.y - 3, 6, 6);
+  }
 
-    this.#drawRays();
+  draw() {
+    this.#drawWallRays();
   }
 }
 

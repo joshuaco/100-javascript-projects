@@ -11,3 +11,7 @@ export function normalize(angle) {
 export function convertToRadians(angle) {
   return angle * (Math.PI / 180);
 }
+
+export function correctFishEye(distance, angle, playerAngle) {
+  return distance * Math.cos(angle - playerAngle);
+}

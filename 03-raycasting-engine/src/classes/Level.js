@@ -24,7 +24,7 @@ class Level {
     return false;
   }
 
-  draw() {
+  draw(offsetX, offsetY, scale) {
     let color;
 
     for (let y = 0; y < this.heightMap; y++) {
@@ -37,13 +37,32 @@ class Level {
 
         this.ctx.fillStyle = color;
         this.ctx.fillRect(
-          x * this.widthTiles,
-          y * this.heightTiles,
-          this.widthTiles,
-          this.heightTiles
+          offsetX + x * this.widthTiles * scale,
+          offsetY + y * this.heightTiles * scale,
+          this.widthTiles * scale,
+          this.heightTiles * scale
         );
       }
     }
+  }
+
+  drawPlayer(player, offsetX, offsetY, scale) {
+    this.ctx.fillStyle = 'red';
+    this.ctx.fillRect(
+      offsetX + player.x * scale - 3,
+      offsetY + player.y * scale - 3,
+      6,
+      6
+    );
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(offsetX + player.x * scale, offsetY + player.y * scale);
+    this.ctx.lineTo(
+      offsetX + player.x * scale + Math.cos(player.rotationAngle) * 20,
+      offsetY + player.y * scale + Math.sin(player.rotationAngle) * 20
+    );
+    this.ctx.strokeStyle = 'red';
+    this.ctx.stroke();
   }
 }
 

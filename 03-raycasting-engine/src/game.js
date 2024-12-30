@@ -9,8 +9,11 @@ const player = new Player(ctx, map, 100, 100);
 
 const gameLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   player.draw();
   player.update();
+  map.draw(10, 10, 0.2);
+  map.drawPlayer(player, 10, 10, 0.2);
 
   window.requestAnimationFrame(gameLoop);
 };

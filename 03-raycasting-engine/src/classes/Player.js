@@ -52,7 +52,7 @@ class Player {
     return false;
   }
 
-  #directonLine() {
+  #directionLine() {
     const directionX = this.x + Math.cos(this.rotationAngle) * 40;
     const directionY = this.y + Math.sin(this.rotationAngle) * 40;
 

@@ -55,6 +55,10 @@ class Level {
       6
     );
 
+    this.#drawPlayerDirectionLine(player, offsetX, offsetY, scale);
+  }
+
+  #drawPlayerDirectionLine(player, offsetX, offsetY, scale) {
     this.ctx.beginPath();
     this.ctx.moveTo(offsetX + player.x * scale, offsetY + player.y * scale);
     this.ctx.lineTo(

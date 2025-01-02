@@ -7,6 +7,9 @@ import { canvas, ctx } from './engine/renderer.js';
 const map = new Level(canvas, ctx, LEVEL1);
 const player = new Player(ctx, map, 100, 100);
 
+const image = new Image();
+image.src = 'src/assets/wolftextures.png';
+
 const gameLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 

@@ -59,11 +59,14 @@ class Level {
   }
 
   #drawPlayerDirectionLine(player, offsetX, offsetY, scale) {
+    const directionX = offsetX + player.x * scale;
+    const directionY = offsetY + player.y * scale;
+
     this.ctx.beginPath();
-    this.ctx.moveTo(offsetX + player.x * scale, offsetY + player.y * scale);
+    this.ctx.moveTo(directionX, directionY);
     this.ctx.lineTo(
-      offsetX + player.x * scale + Math.cos(player.rotationAngle) * 20,
-      offsetY + player.y * scale + Math.sin(player.rotationAngle) * 20
+      directionX + Math.cos(player.rotationAngle) * 20,
+      directionY + Math.sin(player.rotationAngle) * 20
     );
     this.ctx.strokeStyle = 'red';
     this.ctx.stroke();

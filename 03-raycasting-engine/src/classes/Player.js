@@ -52,17 +52,6 @@ class Player {
     return false;
   }
 
-  #directionLine() {
-    const directionX = this.x + Math.cos(this.rotationAngle) * 40;
-    const directionY = this.y + Math.sin(this.rotationAngle) * 40;
-
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.x, this.y);
-    this.ctx.lineTo(directionX, directionY);
-    this.ctx.strokeStyle = 'red';
-    this.ctx.stroke();
-  }
-
   update() {
     this.rotationAngle += this.rotate * this.rotationSpeed;
 
@@ -116,11 +105,6 @@ class Player {
         wallHeight
       );
     }
-  }
-
-  #drawPlayer() {
-    this.ctx.fillStyle = 'red';
-    this.ctx.fillRect(this.x - 3, this.y - 3, 6, 6);
   }
 
   draw() {

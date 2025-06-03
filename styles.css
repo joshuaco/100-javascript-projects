@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
   min-height: 100vh;
   padding: 2rem;
 }
@@ -23,15 +23,32 @@ body {
 
 .title {
   font-size: 3.5rem;
-  color: white;
+  color: #1e293b;
   margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: none;
+  font-weight: 700;
+}
+
+.hero-image {
+  max-width: 100%;
+  width: auto;
+  height: 200px;
+  object-fit: contain;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }
 
 .subtitle {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 300;
+  color: #64748b;
+  font-weight: 400;
 }
 
 .projects-grid {
@@ -102,7 +119,7 @@ body {
 }
 
 .project-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -115,14 +132,14 @@ body {
 }
 
 .project-button:hover {
-  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
   transform: translateY(-2px);
 }
 
 .stats {
   margin-top: 3rem;
   text-align: center;
-  color: white;
+  color: #475569;
   opacity: 0.9;
 }
 
@@ -146,6 +163,11 @@ body {
     font-size: 2.5rem;
   }
 
+  .hero-image {
+    height: 150px;
+    margin: 1rem 0;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -163,6 +185,11 @@ body {
 
   .subtitle {
     font-size: 1rem;
+  }
+
+  .hero-image {
+    height: 120px;
+    margin: 0.75rem 0;
   }
 
   .project-content {

@@ -4,37 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>100 JavaScript Projects</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <style>
-    body {
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3rem;
-      color: #333;
-    }
-
-    a {
-      font-size: 2rem;
-      margin: 1rem;
-      padding: 1rem;
-      border: 1px solid tomato;
-      text-decoration: none;
-      color: #333;
-      margin: 8px;
-
-      @media screen and (max-width: 500px) {
-        display: block;
-        margin-bottom: 12px;
-      }
-    }
-  </style>
   <body>
-    <h1>100 JavaScript Projects</h1>
+    <div class="container">
+      <header class="header">
+        <h1 class="title">100 JavaScript Projects</h1>
+        <p class="subtitle">
+          A collection of interactive projects built with vanilla JavaScript
+        </p>
+      </header>
 
-    <a href="./01-tinder-swipe/index.html">Tinder Swipe</a>
-    <a href="./02-arkanoid/index.html">Arkanoid</a>
-    <a href="./03-raycasting-engine/index.html">Raycast Engine</a>
+      <main class="projects-grid">
+        <a href="./01-tinder-swipe/index.html" class="project-card">
+          <div class="project-image"></div>
+          <div class="project-content">
+            <h3 class="project-title">Tinder Swipe</h3>
+            <p class="project-description">
+              Implementation of the famous Tinder swipe gesture. Drag cards left
+              or right to approve or reject.
+            </p>
+            <button class="project-button">View Project</button>
+          </div>
+        </a>
+
+        <a href="./02-arkanoid/index.html" class="project-card">
+          <div class="project-image"></div>
+          <div class="project-content">
+            <h3 class="project-title">Arkanoid</h3>
+            <p class="project-description">
+              Recreation of the classic Arkanoid game. Control the paddle to
+              bounce the ball and destroy all blocks.
+            </p>
+            <button class="project-button">View Project</button>
+          </div>
+        </a>
+
+        <a href="./03-raycasting-engine/index.html" class="project-card">
+          <div class="project-image"></div>
+          <div class="project-content">
+            <h3 class="project-title">Raycast Engine</h3>
+            <p class="project-description">
+              Basic 3D rendering engine using raycasting. Explore a pseudo-3D
+              world like in early video games.
+            </p>
+            <button class="project-button">View Project</button>
+          </div>
+        </a>
+      </main>
+
+      <footer class="stats">
+        <span class="stats-number">3</span>
+        <span class="stats-label">Completed Projects</span>
+      </footer>
+    </div>
   </body>
 </html>

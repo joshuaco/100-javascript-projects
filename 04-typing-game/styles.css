@@ -60,6 +60,14 @@ p {
   margin: 0;
 }
 
+word {
+  border-bottom: 2px solid transparent;
+
+  &.missed {
+    border-bottom: 2px solid var(--red);
+  }
+}
+
 letter {
   color: var(--gray);
   position: relative;
@@ -68,13 +76,13 @@ letter {
     content: '|';
     color: var(--yellow);
     position: absolute;
-    left: -65%;
+    left: -60%;
     top: -2px;
     animation: 1s blink infinite ease-in-out;
   }
 
   &.active.is-last::before {
-    left: 65%;
+    left: 60%;
   }
 
   &.correct {

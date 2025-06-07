@@ -4,7 +4,8 @@ const $input = document.querySelector('input');
 
 const INITIAL_TIME = 30;
 
-const TEXT = 'lorem ipsum dolor sit amet person typing some keys';
+const TEXT =
+  'lorem ipsum dolor sit amet person typing some keys for improve speed and accuracy';
 
 let words = [];
 let currentTime = INITIAL_TIME;
@@ -54,7 +55,67 @@ function initEvents() {
   document.addEventListener('keyup', onKeyUp);
 }
 
-function onKeyDown() {}
+function onKeyDown(event) {
+  const $currentWord = $paragraph.querySelector('word.active');
+  const $currentLetter = $currentWord.querySelector('letter.active');
+
+  if (event.key === ' ') {
+    event.preventDefault();
+
+    const $nextWord = $currentWord.nextElementSibling;
+    const $nextLetter = $nextWord.querySelector('letter');
+
+    if ($nextWord) {
+      $currentWord.classList.remove('active', 'missed');
+      $currentLetter.classList.remove('active');
+
+      $nextWord.classList.add('active');
+      $nextLetter.classList.add('active');
+    }
+
+    $input.value = '';
+
+    const hasMissedLetters =
+      $currentWord.querySelectorAll('letter:not(.correct)').length > 0;
+
+    if (hasMissedLetters) {
+      $currentWord.classList.add('missed');
+    }
+  }
+
+  if (event.key === 'Backspace') {
+    const $previousWord = $currentWord.previousElementSibling;
+    const $previousLetter = $currentLetter.previousElementSibling;
+
+    if (!$previousWord && !$previousLetter) {
+      event.preventDefault();
+      return;
+    }
+
+    const $wordMissed = $paragraph.querySelector('word.missed');
+    if ($wordMissed && !$previousLetter) {
+      $previousWord.classList.remove('missed');
+      $previousWord.classList.add('active');
+
+      const $letterToGoBack = $previousWord.querySelector('letter:last-child');
+
+      $letterToGoBack.classList.add('active');
+      $currentLetter.classList.remove('active', 'is-last');
+
+      const previousWordLetters = Array.from(
+        $previousWord.querySelectorAll('letter.correct, letter.incorrect')
+      )
+        .map((letter) => {
+          return letter.classList.contains('correct') ? letter.innerText : '*';
+        })
+        .join('');
+
+      console.log(previousWordLetters);
+
+      $input.value = previousWordLetters;
+    }
+  }
+}
 
 function onKeyUp() {
   // Retrieve the current element with the class active
@@ -88,5 +149,6 @@ function onKeyUp() {
     $nextActiveLetter.classList.add('active');
   } else {
     $currentLetter.classList.add('active', 'is-last');
+    // TODO: gameOver if there isn't more words.
   }
 }

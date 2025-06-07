@@ -9,5 +9,84 @@ const TEXT = 'lorem ipsum dolor sit amet person typing some keys';
 let words = [];
 let currentTime = INITIAL_TIME;
 
-function initGame() {}
-function initEvents() {}
+initGame();
+initEvents();
+
+function initGame() {
+  words = TEXT.split(' ').slice(0, 32);
+  currentTime = INITIAL_TIME;
+
+  $time.textContent = currentTime;
+
+  $paragraph.innerHTML = words
+    .map((word) => {
+      const letters = word.split('');
+
+      return `<word>
+      ${letters.map((letter) => `<letter>${letter}</letter>`).join('')}
+      </word>`;
+    })
+    .join('');
+
+  const $firstWord = $paragraph.querySelector('word');
+  $firstWord.classList.add('active');
+
+  const $firstLetter = $firstWord.querySelector('letter');
+  $firstLetter.classList.add('active');
+
+  const timeInterval = setInterval(() => {
+    currentTime--;
+    $time.textContent = currentTime;
+
+    if (currentTime <= 0) {
+      clearInterval(timeInterval);
+    }
+  }, 1000);
+}
+
+function initEvents() {
+  /* Only for testing */
+  document.addEventListener('keydown', () => {
+    $input.focus();
+  });
+
+  document.addEventListener('keydown', onKeyDown);
+  document.addEventListener('keyup', onKeyUp);
+}
+
+function onKeyDown() {}
+
+function onKeyUp() {
+  // Retrieve the current element with the class active
+  const $currentWord = $paragraph.querySelector('word.active');
+  const $currentLetter = $currentWord.querySelector('letter.active');
+
+  const currentWord = $currentWord.innerText.trim();
+  $input.maxLength = currentWord.length;
+
+  const $allLetters = $currentWord.querySelectorAll('letter');
+
+  $allLetters.forEach(($letter) =>
+    $letter.classList.remove('correct', 'incorrect')
+  );
+
+  $input.value.split('').forEach((char, index) => {
+    const $letter = $allLetters[index];
+    const letterToCheck = currentWord[index];
+
+    const isCorrect = char === letterToCheck;
+    const letterClass = isCorrect ? 'correct' : 'incorrect';
+    $letter.classList.add(letterClass);
+  });
+
+  $currentLetter.classList.remove('active', 'is-last');
+
+  const inputLength = $input.value.length;
+  const $nextActiveLetter = $allLetters[inputLength];
+
+  if ($nextActiveLetter) {
+    $nextActiveLetter.classList.add('active');
+  } else {
+    $currentLetter.classList.add('active', 'is-last');
+  }
+}
